@@ -1,8 +1,6 @@
-// backend/controllers/todo.controller.js
-const Todo = require('../models/todo.model');
+import Todo from '../models/todo.model.js';
 
-// Get all todos
-const getTodos = async (req, res) => {
+export const getTodos = async (req, res) => {
     try {
         const todos = await Todo.find();
         res.json(todos);
@@ -11,8 +9,7 @@ const getTodos = async (req, res) => {
     }
 };
 
-// Add a new todo
-const addTodo = async (req, res) => {
+export const addTodo = async (req, res) => {
     const todo = new Todo({
         text: req.body.text,
     });
@@ -24,8 +21,7 @@ const addTodo = async (req, res) => {
     }
 };
 
-// Update a todo
-const updateTodo = async (req, res) => {
+export const updateTodo = async (req, res) => {
     try {
         const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, { new: true });
         res.json(updatedTodo);
@@ -34,19 +30,11 @@ const updateTodo = async (req, res) => {
     }
 };
 
-// Delete a todo
-const deleteTodo = async (req, res) => {
+export const deleteTodo = async (req, res) => {
     try {
         await Todo.findByIdAndDelete(req.params.id);
         res.json({ message: 'Todo deleted' });
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
-};
-
-module.exports = {
-    getTodos,
-    addTodo,
-    updateTodo,
-    deleteTodo,
 };

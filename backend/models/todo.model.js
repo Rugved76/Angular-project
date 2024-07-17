@@ -1,9 +1,17 @@
-// backend/models/todo.model.js
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const todoSchema = new mongoose.Schema({
-    text: { type: String, required: true },
-    isCompleted: { type: Boolean, default: false },
+    text: {
+        type: String,
+        required: true
+    },
+    isCompleted: {
+        type: Boolean,
+        default: false
+    },
 });
 
-module.exports = mongoose.model('Todo', todoSchema);
+
+const Todo = mongoose.model('Todo', todoSchema);
+
+export default Todo;
