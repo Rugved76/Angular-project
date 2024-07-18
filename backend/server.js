@@ -9,12 +9,12 @@ const app = express();
 dotenv.config();
 
 const PORT = process.env.PORT || 5000;
-const MONGODB_URL = process.env.MONGO_URL;
+const MONGODB_URL = process.env.MONGO_URL || "mongodb+srv://rugvedwagh02:rugved76@cluster0.0mvw1ca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://rugvedwagh02:rugved76@cluster0.0mvw1ca.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect(MONGODB_URL)
     .then(() => {
         console.log('\nMongoDB connected')
     })
